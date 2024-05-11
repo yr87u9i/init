@@ -1,6 +1,9 @@
-const gcd = (a, b) => {
-  if (b === 0) {
-    return a;
+function getIntersectionNode(headA, headB) {
+  let currA = headA;
+  let currB = headB;
+  while (currA !== currB) {
+    currA = currA ? currA.next : headB;
+    currB = currB ? currB.next : headA;
   }
-  return gcd(b, a % b);
-};
+  return currA;
+}
