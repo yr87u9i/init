@@ -1,20 +1,10 @@
-function findItinerary(tickets) {
-  const graph = new Map();
-  for (const [from, to] of tickets) {
-    if (!graph.has(from)) graph.set(from, []);
-    graph.get(from).push(to);
-  }
-  for (const destinations of graph.values()) {
-    destinations.sort();
-  }
-  const result = [];
-  dfs("JFK");
-  return result.reverse();
-  function dfs(from) {
-    const destinations = graph.get(from);
-    while (destinations && destinations.length) {
-      dfs(destinations.shift());
+function minimumTotal(triangle) {
+  const n = triangle.length;
+  const dp = triangle[n - 1];
+  for (let i = n - 2; i >= 0; i--) {
+    for (let j = 0; j <= i; j++) {
+      dp[j] = triangle[i][j] + Math.min(dp[j], dp[j + 1]);
     }
-    result.push(from);
   }
+  return dp[0];
 }
